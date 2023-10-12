@@ -4,6 +4,6 @@ CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
     email varchar(255) NOT NULL UNIQUE,
     name varchar(255),
-    country ENUM('US', 'CO', 'IN') NOT NULL
+    country varchar(2) NOT NULL DEFAULT 'US' CHECK(country IN ('US', 'CO', 'IN')),
     PRIMARY KEY (id)
 );

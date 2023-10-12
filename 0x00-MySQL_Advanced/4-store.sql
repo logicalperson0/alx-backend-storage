@@ -5,4 +5,4 @@ CREATE TRIGGER quan_item AFTER INSERT ON orders
         UPDATE items
             SET quantity = quantity - NEW.number
             WHERE name = NEW.item_name;
-    END
+    END;

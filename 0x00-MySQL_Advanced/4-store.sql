@@ -1,3 +1,8 @@
 -- SQL script that creates a trigger that decreases the quantity of an item after adding a new order
 CREATE TRIGGER quan_item AFTER INSERT ON orders
-    FOR EACH ROW SET item.quantity = item.quantity - orders.number;
+    FOR EACH ROW
+    BEGIN
+        UPDATE items
+            SET quantity = quantity - NEW.number
+            WHERE name = NEW.item_name;
+    END

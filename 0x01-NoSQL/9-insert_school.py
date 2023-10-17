@@ -11,4 +11,4 @@ def insert_school(mongo_collection, **kwargs):
     if mongo_collection is None:
         return []
     create_id = mongo_collection.insert_one(kwargs)
-    return create_id
+    return create_id.inserted_id

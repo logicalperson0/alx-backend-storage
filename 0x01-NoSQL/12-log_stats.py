@@ -16,7 +16,7 @@ if __name__ == "__main__":
     put_doc = logs_stats.count_documents( { "method": "PUT" } )
     patch_doc = logs_stats.count_documents( { "method": "PATCH" } )
     del_doc = logs_stats.count_documents( { "method": "DELETE" } )
-    status_doc = logs_stats.count_documents( { "path": "/status" } )
+    status_doc = logs_stats.count_documents( { "method": "GET", "path": "/status" } )
 
     print('{} logs'.format(cou_doc))
     print("Methods:")

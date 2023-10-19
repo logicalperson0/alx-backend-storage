@@ -39,6 +39,4 @@ class Cache:
 
     def get_int(self, key: str) -> int:
         """return int of data in key"""
-        get_keyi = self.get(key, int)
-
-        return get_keyi
+        get_keyi = self

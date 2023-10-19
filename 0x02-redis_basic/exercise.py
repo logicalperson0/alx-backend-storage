@@ -4,8 +4,18 @@ contians a Cache class defn for redis
 """
 import redis
 import uuid
+from functools import wraps
 from typing import Union, Callable, Optional
 
+
+def count_calls(method: Callable) -> Callable:
+    """a decorator that takes a single method Callable argument"""
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """a wrapper method that will incr in redis the method arg"""
+        self._redis.incr(method.__qualname__)
+        return method(self, *args, **kwargs)
+    return wrapper
 
 class Cache:
     """Redis client as a private variable named _redis (using redis.Redis())
@@ -15,6 +25,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """method that takes a data argument and returns a string"""
         ran_key = str(uuid.uuid4())

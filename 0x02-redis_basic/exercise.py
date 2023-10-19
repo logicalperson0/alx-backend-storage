@@ -35,7 +35,7 @@ class Cache:
 
     def get_str(self, key: str) -> str:
         """return: string of data in key"""
-        get_key = self.get(key.decode('utf-8'))
+        get_key = self.get(str(key))
 
         return get_key
 

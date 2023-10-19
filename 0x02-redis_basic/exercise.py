@@ -33,12 +33,12 @@ class Cache:
 
     def get_str(self, key: str) -> str:
         """return: string of data in key"""
-        get_key = self.get(key, fn=lambda d: d.decode('utf-8'))
+        get_key = self.get(key, lambda d: d.decode('utf-8'))
 
         return get_key
 
     def get_int(self, key: str) -> int:
         """return int of data in key"""
-        get_keyi = self.get(key, fn=int)
+        get_keyi = self.get(key, int)
 
         return get_keyi
